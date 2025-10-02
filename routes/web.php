@@ -34,17 +34,14 @@ Route::get('prueba', function () {
 
     //crear un nuevo post"
 
-
     //  $post = new Post;
     //  $post->title = 'Titulo de pruEba 4';
     //  $post->content = 'Contenido dE prueba 4';
     //  $post->categoria = 'Categoria De prueba 4';
     //  $post->save();
 
-
-
     //buscar un post por id
-    $post = Post::find(4);
+    //$post = Post::find(4);
 
     //  //buscar un post por titulo y actualizar la categoria
     //  $post = Post::where('title', 'Titulo de prueba')->first();
@@ -71,14 +68,14 @@ Route::get('prueba', function () {
     //$post = Post::orderBy('id', 'desc')->limit(2)->get();
 
     //seleccionar solo el id, title y content
-   // $post = Post::select('id', 'title', 'content')->get();
+    // $post = Post::select('id', 'title', 'content')->get();
 
-   //seleccionar solo el id, title y content y ordenarlos por categoria de forma ascendente y limitar el resultado a 2
+    //seleccionar solo el id, title y content y ordenarlos por categoria de forma ascendente y limitar el resultado a 2
     // $post = Post::orderBy('categoria', 'asc')
     //     ->select('id', 'title', 'content')
     //     ->take(2)
     //     ->get();
-    
+
     //eliminar un post por id
     // $post = Post::find(1);
     // $post->delete();
@@ -89,10 +86,23 @@ Route::get('prueba', function () {
     // $post->delete();
     // return "Todos los posts eliminados correctamente";
 
+    // //formatear la fecha de creacion
+    // $post = Post::find(4);
+    // return $post->created_at->format('d/m/Y');
+
+    // //formatear la fecha de creacion en formato humano
+    // $post = Post::find(1);
+    // return $post->created_at->diffForHumans();
+
+    
+    // //formatear la fecha de creacion
+    $post = Post::find(1);
+    dd( $post->is_active);
 
 
 
-    return $post;
+
+
 });
 
 

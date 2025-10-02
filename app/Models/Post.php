@@ -11,6 +11,22 @@ class Post extends Model
     use HasFactory;
     
     protected $table = 'posts';
+    
+    protected $fillable = [
+        'title',
+        'content',
+        'categoria',
+        'published_at',
+        'is_active'
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'timestamp',
+            'is_active' => 'boolean',
+        ];
+    }
 
     protected function title(): Attribute
     {
