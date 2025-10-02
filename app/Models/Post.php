@@ -15,7 +15,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
-        'categoria',
+        'category',
         'published_at',
         'is_active'
     ];
