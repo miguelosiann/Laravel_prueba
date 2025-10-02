@@ -36,15 +36,15 @@ Route::get('prueba', function () {
 
 
     //  $post = new Post;
-    //  $post->title = 'Titulo de prueba 3';
-    //  $post->content = 'Contenido de prueba 3';
-    //  $post->categoria = 'Categoria de prueba 3';
+    //  $post->title = 'Titulo de pruEba 4';
+    //  $post->content = 'Contenido dE prueba 4';
+    //  $post->categoria = 'Categoria De prueba 4';
     //  $post->save();
 
 
 
     //buscar un post por id
-    //  $post = Post::find(2);
+    $post = Post::find(4);
 
     //  //buscar un post por titulo y actualizar la categoria
     //  $post = Post::where('title', 'Titulo de prueba')->first();
@@ -80,13 +80,19 @@ Route::get('prueba', function () {
     //     ->get();
     
     //eliminar un post por id
-    $post = Post::find(1);
-    $post->delete();
-    return "Post eliminado correctamente";
+    // $post = Post::find(1);
+    // $post->delete();
+    // return "Post eliminado correctamente";
+
+    // //eliminar todos los posts
+    // $post = Post::all();
+    // $post->delete();
+    // return "Todos los posts eliminados correctamente";
 
 
 
-   // return $post;
+
+    return $post;
 });
 
 
