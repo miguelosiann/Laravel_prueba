@@ -3,23 +3,27 @@
         <div class="gradient-bg min-h-screen py-12">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Header con navegación -->
-                <div class="create-header">
+                <div class="edit-header">
                     <div class="mb-4 sm:mb-0">
-                        <h1 class="create-title">
-                            ✨ Crear Nuevo Post
+                        <h1 class="edit-title">
+                            ✏️ Editar Post
                         </h1>
-                        <p class="create-subtitle">Comparte tu contenido con el mundo</p>
+                        <p class="edit-subtitle">Modifica la información del artículo</p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <a href="{{ route('posts.index') }}" class="back-btn-glass">
-                            ← Volver a Posts
+                        <a href="{{ route('posts.show', $post->id) }}" class="back-btn-glass">
+                            ← Volver al Post
+                        </a>
+                        <a href="{{ route('posts.index') }}" class="btn-gradient">
+                            📝 Ver Todos los Posts
                         </a>
                     </div>
                 </div>
 
-                <!-- Formulario de creación -->
-                <form action="{{ route('posts.store') }}" method="post" class="create-form-card">
+                <!-- Formulario de edición -->
+                <form action="{{ route('posts.update', $post->id) }}" method="post" class="edit-form-card">
                     @csrf
+                    @method('put')
                     
                     <!-- Título -->
                     <div class="form-group">
@@ -29,7 +33,7 @@
                         <input type="text" 
                                name="title" 
                                id="title" 
-                               value="{{ old('title') }}" 
+                               value="{{ old('title', $post->title) }}" 
                                class="form-input" 
                                placeholder="Ingresa el título del post" 
                                required>
@@ -45,10 +49,9 @@
                         </label>
                         <textarea name="content" 
                                   id="content" 
-                                  value="{{ old('content') }}"
                                   class="form-textarea" 
                                   placeholder="Escribe el contenido del post" 
-                                  required>{{ old('content') }}</textarea>
+                                  required>{{ old('content', $post->content) }}</textarea>
                         @error('content')
                             <p class="error-message">{{ $message }}</p>
                         @enderror
@@ -62,7 +65,7 @@
                         <input type="text" 
                                name="category" 
                                id="category" 
-                               value="{{ old('category') }}" 
+                               value="{{ old('category', $post->category) }}" 
                                class="form-input" 
                                placeholder="Ingresa la categoría" 
                                required>
@@ -71,16 +74,41 @@
                         @enderror
                     </div>
                     
+                    <!-- Estado del post -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            🔄 Estado del Post
+                        </label>
+                        <div class="radio-container">
+                            <label class="radio-label">
+                                <input type="radio" 
+                                       name="is_active" 
+                                       value="1" 
+                                       {{ old('is_active', $post->is_active) ? 'checked' : '' }}
+                                       class="radio-input">
+                                <span class="radio-text-active">✅ Activo</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" 
+                                       name="is_active" 
+                                       value="0" 
+                                       {{ !old('is_active', $post->is_active) ? 'checked' : '' }}
+                                       class="radio-input">
+                                <span class="radio-text-inactive">❌ Inactivo</span>
+                            </label>
+                        </div>
+                    </div>
+                    
                     <!-- Botones de acción -->
                     <div class="form-actions">
-                        <button type="submit" class="create-btn">
+                        <button type="submit" class="update-btn">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
-                            Crear Post
+                            Actualizar Post
                         </button>
                         
-                        <a href="{{ route('posts.index') }}" class="cancel-btn">
+                        <a href="{{ route('posts.show', $post->id) }}" class="cancel-btn">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
