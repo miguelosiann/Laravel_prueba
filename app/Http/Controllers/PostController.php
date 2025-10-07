@@ -11,7 +11,7 @@ class PostController extends Controller
     public function index()
     {
         //$posts = Post::all();
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'desc')->paginate(6);
         //compact es una funcion que se encarga de compactar los datos y enviarlos a la vista
         return view('posts.index', compact('posts'));
     }
