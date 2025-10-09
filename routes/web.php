@@ -8,24 +8,24 @@ use App\Models\Post;
 
 Route::get('/', [HomeController::class, 'index']);
 
-//aqui se enlista todos los posts
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+// //aqui se enlista todos los posts
+// Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 
-//aqui se crea un nuevo post y se guarda en la base de datos
-Route::get('/nuevo_artuculo/create', [PostController::class, 'create'])->name('posts.create');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+// //aqui se crea un nuevo post y se guarda en la base de datos
+// Route::get('/nuevo_artuculo/create', [PostController::class, 'create'])->name('posts.create');
+// Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
-//aqui se muestra un post en particular
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+// //aqui se muestra un post en particular
+// Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
-//aqui se edita un post en particular y se actualiza en la base de datos
-Route::get('/editar_articulo/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
-Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+// //aqui se edita un post en particular y se actualiza en la base de datos
+// Route::get('/editar_articulo/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+// Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
 
-//aqui se elimina un post en particular
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+// //aqui se elimina un post en particular
+// Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-
+Route::resource('articulos', PostController::class)->names('posts')->parameters(['articulos' => 'post']);
 
 /*Route::get('/', function () {
     return view('welcome');
